@@ -40,8 +40,8 @@ jobs:
           cmake --version
           echo "== CMAKE CONFIGURE =="
           conan install .
-          cmake --preset conan-debug
-          cmake --build --preset conan-debug
+          cmake --preset conan-release
+          cmake --build --preset conan-release
 #          cmake -B${{env.BUILD_DIR}} -DCLOVE_CMAKE__UC_BUILD=true
 #          echo "== CMAKE BUILD =="
 #          cmake --build ${{env.BUILD_DIR}} --config Release
