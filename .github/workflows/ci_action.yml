@@ -18,7 +18,7 @@ jobs:
     runs-on: macos-14
     defaults:
       run:
-        shell: fish
+        shell: bash
     env:
       BUILD_DIR: ${{ github.workspace }}/build
     steps:
