@@ -46,5 +46,4 @@ jobs:
           ls -la ${{env.BUILD_DIR}}
           file ${{env.BUILD_DIR}}/all_tests
       - name: Test
-        run: ${{env.BUILD_DIR}}/all_tests
-
+        run: ${{env.BUILD_DIR}}/all_tests -x
