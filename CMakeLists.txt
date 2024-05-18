@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(all_tests C)
+project(all_tests C CXX)
 set(CMAKE_C_STANDARD 11)
 find_package(clove-unit REQUIRED)
 set(TESTS src/main.c src/example.c)
