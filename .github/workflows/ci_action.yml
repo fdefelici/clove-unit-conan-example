@@ -44,8 +44,8 @@ jobs:
           cmake --build --preset conan-debug
       - name: List Build
         run: |
-          ls -la ${{env.BUILD_DIR}}/Release
-          file ${{env.BUILD_DIR}}/Release/all_tests
+          ls -la ${{env.BUILD_DIR}}/Debug
+          file ${{env.BUILD_DIR}}/Debug/all_tests
       - name: Test
         run: ${{env.BUILD_DIR}}/Release/all_tests -x
 
