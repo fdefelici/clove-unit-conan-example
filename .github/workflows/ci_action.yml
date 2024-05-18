@@ -42,15 +42,10 @@ jobs:
           conan install .
           cmake --preset conan-release
           cmake --build --preset conan-release
-#          cmake -B${{env.BUILD_DIR}} -DCLOVE_CMAKE__UC_BUILD=true
-#          echo "== CMAKE BUILD =="
-#          cmake --build ${{env.BUILD_DIR}} --config Release
       - name: List Build
-        #run:  ls -la ${{env.BUILD_DIR}}
-        run:  file ${{env.BUILD_DIR}}/tests/functs/CLoveUnitTest
-#      - name: Test
-#        run: |
-#          cd ${{env.BUILD_DIR}}
-#          ctest -C Release -T test --output-on-failure
-#          cd ${{ github.workspace }}
+        run: |
+          ls -la ${{env.BUILD_DIR}}
+          file ${{env.BUILD_DIR}}/all_tests
+      - name: Test
+        run: ${{env.BUILD_DIR}}/all_tests -x
 
