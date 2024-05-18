@@ -28,7 +28,7 @@ jobs:
         run:  ls -la ${{ github.workspace }}
       - name: Prepare
         run: |
-          pip install conan
+          pip install conan==2.3.1
           conan profile detect --force
       - name: Compile
         run: |
@@ -39,9 +39,9 @@ jobs:
           echo "== CMAKE VERSION =="
           cmake --version
           echo "== CMAKE CONFIGURE =="
-          conan install .
-          cmake --preset conan-release
-          cmake --build --preset conan-release
+          conan install . --settings=build_type=Debug
+          cmake --preset conan-debug
+          cmake --build --preset conan-debug
       - name: List Build
         run: |
           ls -la ${{env.BUILD_DIR}}/Release
