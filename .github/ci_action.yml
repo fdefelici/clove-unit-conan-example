@@ -1,0 +1,56 @@
+name: CI Action
+
+on:
+  push:
+      branches: 
+        - '**'
+        - '!master'
+      paths-ignore: 
+        - '**/*.md'
+        - '**/*.png'
+  pull_request:
+      branches:
+        - '**'
+jobs:
+  build_macos:
+    name: Build macos_apple-clang
+    #runs-on: macos-latest
+    runs-on: macos-14
+    defaults:
+      run:
+        shell: bash
+    env:
+      BUILD_DIR: ${{ github.workspace }}/build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: List Workspace
+        run:  ls -la ${{ github.workspace }}
+      - name: Prepare
+        run: |
+          pip install conan
+          conan profile detect --force
+      - name: Compile
+        run: |
+          echo "== CONAN VERSION =="
+          conan --version
+          echo "== COMPILER VERSION =="
+          clang --version
+          echo "== CMAKE VERSION =="
+          cmake --version
+          echo "== CMAKE CONFIGURE =="
+          conan install .
+          cmake --preset conan-debug
+          cmake --build --preset conan-debug
+#          cmake -B${{env.BUILD_DIR}} -DCLOVE_CMAKE__UC_BUILD=true
+#          echo "== CMAKE BUILD =="
+#          cmake --build ${{env.BUILD_DIR}} --config Release
+      - name: List Build
+        #run:  ls -la ${{env.BUILD_DIR}}
+        run:  file ${{env.BUILD_DIR}}/tests/functs/CLoveUnitTest
+#      - name: Test
+#        run: |
+#          cd ${{env.BUILD_DIR}}
+#          ctest -C Release -T test --output-on-failure
+#          cd ${{ github.workspace }}
+

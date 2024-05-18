@@ -1,0 +1,9 @@
+[requires]
+clove-unit/2.4.4
+
+[layout]
+cmake_layout
+
+[generators]
+CMakeDeps
+CMakeToolchain
