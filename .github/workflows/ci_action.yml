@@ -39,8 +39,8 @@ jobs:
           echo "== CMAKE VERSION =="
           cmake --version
           echo "== CMAKE CONFIGURE =="
-          cmake -B${{env.BUILD_DIR}} -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=./conan_provider.cmake
-          cmake --build ${{env.BUILD_DIR}} --config Release
+          cmake -B${{env.BUILD_DIR}} -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=./conan_provider.cmake -DCMAKE_BUILD_TYPE=Release
+#          cmake --build ${{env.BUILD_DIR}} --config Release
       - name: List Build
         run:  file ${{env.BUILD_DIR}}/tests/functs/CLoveUnitTest
       - name: Test
