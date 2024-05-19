@@ -32,6 +32,8 @@ jobs:
           conan profile detect --force
       - name: Compile
         run: |
+          echo "== CPU VERSION =="
+          sysctl -n machdep.cpu.brand_string
           echo "== CONAN VERSION =="
           conan --version
           echo "== COMPILER VERSION =="
